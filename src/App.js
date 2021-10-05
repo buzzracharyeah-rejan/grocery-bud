@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from 'react'
 import List from './List'
 import Alert from './Alert'
-
+const getLocalStorage = () => {
+  const list = localStorage.getItem('list');
+  if(list) {
+    return JSON.parse(list)
+  } 
+  return [];
+}
 function App() {
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(getLocalStorage());
   const [userInput, setUserInput] = useState(''); 
   const [isEditing, setIsEditing] = useState(false); 
   const [editId, setEditId] = useState(null); 
   const [alert, setAlert] = useState({show: false, msg: '', type: ''}); 
+
+  useEffect(() => {
+    localStorage.setItem('list', JSON.stringify(list));
+  }, [list])
 
   const defaultAction = (msg, type) => {
     setUserInput(''); 
