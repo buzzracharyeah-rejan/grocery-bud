@@ -1,21 +1,27 @@
 import React from 'react'
 import { FaEdit, FaTrash } from 'react-icons/fa'
-const List = ({list}) => {
+const List = ({list, removeItem, editItem}) => {
  return (
-   <article className='grocery-container'>
+   <div className="grocery-list">
      {list.map(todos => {
        const {id, userInput} = todos; 
        return (
-        <div key={id}className="grocery-item">
-        <p>{userInput}</p>
-        <div className="container">
-            <FaEdit className='edit-btn'/>
-            <FaTrash className='delete-btn'/>
-        </div>
-        </div>
+         <article key={id} className='grocery-item'>
+          <p className='title'>{userInput}</p>
+          <div className="btn-container">
+            <button type='button' className='edit-btn'
+            onClick={() => editItem(id)}>
+              <FaEdit />
+            </button>
+            <button type='button' className='delete-btn'
+            onClick={() => removeItem(id)}>
+              <FaTrash />
+            </button>
+          </div>
+         </article>
        );
-     })}
-   </article>
+      })}
+    </div>
  )
 }
 

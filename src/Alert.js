@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-const Alert = ({updateAlert}) => {
+const Alert = ({type, msg, updateAlert}) => {
   useEffect(() => {
     setTimeout(()=>{
       updateAlert();
@@ -8,7 +8,7 @@ const Alert = ({updateAlert}) => {
 
   })
   return <div className="alert">
-    <h4 className="alert-success">item added to the list</h4>
+    <h4 className={`alert-${type}`}>{msg}</h4>
   </div>
 }
 
